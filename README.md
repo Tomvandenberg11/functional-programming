@@ -1,2 +1,2 @@
-# TechTrack
-Techtrack
+# Functional programming
+Techtrack functional programming
