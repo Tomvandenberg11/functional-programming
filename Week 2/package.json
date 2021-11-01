@@ -1,0 +1,29 @@
+{
+  "name": "functional-programming",
+  "version": "1.0.0",
+  "description": "Functional Programming",
+  "main": "app.js",
+  "scripts": {
+    "server": "nodemon server.js",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tomvandenberg11/functional-programming.git"
+  },
+  "author": "Tom van den Berg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tomvandenberg11/functional-programming/issues"
+  },
+  "homepage": "https://github.com/Tomvandenberg11/functional-programming#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "color-string": "^1.6.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "google-translate-api": "^2.3.0",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.14"
+  }
+}
