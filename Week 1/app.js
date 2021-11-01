@@ -12,16 +12,16 @@ main()
 function main() {
   app.use(express.static('static'))
 
-  const eyeColor = 'Wat is je oogkleur?'
+  const question = 'Wat is je oogkleur?'
 
   const color = jsonFile.map(answer =>
-    answer[eyeColor].toLowerCase()
+    answer[question].toLowerCase()
   )
 
   const getColor = function (color) {
     switch (color) {
       case 'bruin':
-        return 'brown'
+        return 'sienna'
       case 'blauw':
         return 'deepskyblue'
       case 'grijs':
@@ -42,7 +42,7 @@ function main() {
   const arrayLength = color.length;
 
   function translateColor(item) {
-    return colorString.get.rgb(getColor(item))
+    return getColor(item)
   }
 
   const rgb = []
@@ -50,8 +50,6 @@ function main() {
   for ( let i = 0; i < arrayLength; i++) {
     rgb.push(translateColor(color[i]))
   }
-
-  console.log(color)
 
   app.get('/', (req, res) => res.render('index.ejs', {
     data: rgb,
