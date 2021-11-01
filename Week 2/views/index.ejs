@@ -6,7 +6,9 @@
 
     <body>
         <div class="container">
-            <%= JSON.stringify(data) %>
+            <% for (let i = 0; i < data.length; i++) { %>
+                <p><%= i + 1 %>. <%= data[i] %></p>
+             <% } %>
         </div>
     </body>
 </html>

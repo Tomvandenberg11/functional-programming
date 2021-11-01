@@ -12,30 +12,26 @@ function main() {
 
   const config = {
     method: 'get',
-    url: 'https://v3.football.api-sports.io/players/squads',
-    params: {team: '201'},
-    headers: {
-      'x-rapidapi-key': 'fd9e2923f1d82234fbe496cf5b9e4e7d',
-      'x-rapidapi-host': 'v3.football.api-sports.io'
-    }
+    url: 'http://api.football-data.org/v2/competitions/PL/standings',
+    headers: { 'X-Auth-Token': '75d02306c5a74efbb9c7cd735b2aa82d' },
   }
 
-  let players = []
+  let standings = []
 
   axios(config)
     .then(function (response) {
-      const arrayLength = response.data.response.length
+      const arrayLength = response.data.standings[0].table.length
+
       for ( let i = 0; i < arrayLength; i++) {
-        players.push(response.data.response[i].players)
+        standings.push(response.data.standings[0].table[i].team.name)
       }
-      console.log(players)
     })
     .catch(function (error) {
       console.log(error);
     });
 
   app.get('/', (req, res) => res.render('index.ejs', {
-    data: players,
+    data: standings,
   }))
 
   app.listen(port, () => {
