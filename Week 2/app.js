@@ -1,28 +1,30 @@
-const express = require('express')
+const express = require('express') // setting express as templating engine
 const app = express()
-const port = 3000;
-const cleanClubs = require('./modules/cleanClubs')
-const cleanDate = require('./modules/cleanDate')
+const port = 3000 // setting port
+
+const axios = require('axios') // importing axios
+
+const cleanClubs = require('./modules/cleanClubs') // importing cleanClubs module
+const cleanDate = require('./modules/cleanDate')// importing cleanDate module
 
 main()
 
 function main() {
-  app.use(express.static('static'))
+  app.use(express.static('static')) // declaring static as static folder
 
-  const axios = require('axios')
-
-  const configStandings = {
+  const configStandings = { // importing the standings API
     method: 'get',
     url: 'https://api.football-data.org/v2/competitions/PL/standings',
     headers: { 'X-Auth-Token': '75d02306c5a74efbb9c7cd735b2aa82d' },
   }
 
-  const configScores = {
+  const configScores = { // importing the matches API
     method: 'get',
     url: `http://api.football-data.org/v2/competitions/PL/matches/?matchday=10`,
     headers: { 'X-Auth-Token': '75d02306c5a74efbb9c7cd735b2aa82d' },
   }
 
+  // declaring empty arrays as global variables
   let standingsPL = []
   let logo = []
   let matchDate = []
@@ -34,26 +36,28 @@ function main() {
   let cleanedStandings
   let cleanedMatchDate
 
+  // function to import and clean the standings and logo's
   axios(configStandings)
     .then(response => {
-      standingsPL = response.data.standings[0].table.map(item => item.team.name)
-      logo = response.data.standings[0].table.map(item => item.team.crestUrl)
+      standingsPL = response.data.standings[0].table.map(item => item.team.name) // mapping all team names in new array
+      logo = response.data.standings[0].table.map(item => item.team.crestUrl) // mapping all team logos in new array
     })
-    .then(() => cleanedStandings = cleanClubs(standingsPL))
+    .then(() => cleanedStandings = cleanClubs(standingsPL)) // cleaning standingsPL by cleanClubs module and putting it in cleanedStandings
     .catch((error) => console.log(error))
 
+  // function to import and clean dates, teams and scores
   axios(configScores)
     .then((response) => {
-      matchDate = response.data.matches.map(item => item.utcDate)
-      homeTeam = response.data.matches.map(item => item.homeTeam.name)
-      awayTeam = response.data.matches.map(item => item.awayTeam.name)
-      scoreHome = response.data.matches.map(item => item.score.fullTime.homeTeam)
-      scoreAway = response.data.matches.map(item => item.score.fullTime.awayTeam)
+      matchDate = response.data.matches.map(item => item.utcDate) // mapping all match dates in new array
+      homeTeam = response.data.matches.map(item => item.homeTeam.name) // mapping all home teams in new array
+      awayTeam = response.data.matches.map(item => item.awayTeam.name) // mapping all away teams in new array
+      scoreHome = response.data.matches.map(item => item.score.fullTime.homeTeam) // mapping all home scores in new array
+      scoreAway = response.data.matches.map(item => item.score.fullTime.awayTeam) // mapping all away scores in new array
     })
-    .then(() => cleanedMatchDate = cleanDate(matchDate))
+    .then(() => cleanedMatchDate = cleanDate(matchDate)) // cleaning matchDate by cleanDate module and putting it in cleanedMatchDate
     .catch((error) => console.log(error))
 
-
+  // rendering all data to the index.ejs
   app.get('/', (req, res) => res.render('index.ejs', {
     dataPL: cleanedStandings,
     date: cleanedMatchDate,
@@ -64,6 +68,7 @@ function main() {
     scoreAway: scoreAway,
   }))
 
+  // console.log showing port
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
