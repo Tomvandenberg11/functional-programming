@@ -1,16 +1,21 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
 }
 
 body {
-    background-color: whitesmoke;
-    padding: 90px
+    background-color: lightblue;
+    padding: 30px 90px
 }
 
-.eyecolor {
+h1 {
+    margin-bottom: 20px;
+}
+
+.wrapper {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin: 5px;
     padding: 10px;

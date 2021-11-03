@@ -5,10 +5,30 @@
     </head>
 
     <body>
+        <h1>Voetbal ranglijsten per competitie</h1>
         <div class="container">
-            <% for (let i = 0; i < data.length; i++) { %>
-                <p><%= i + 1 %>. <%= data[i] %></p>
-             <% } %>
+            <form action="/" method="get">
+                <select name="roundPicker">
+                    <option name="1" value="1">1</option>
+                    <option name="2" value="2">2</option>
+                    <option name="3" value="3">3</option>
+                </select>
+                <input type="submit" />
+            </form>
+            <div class="wrapper">
+                <p> <b>Stand:</b> <br><br>
+                    <% for (let i = 0; i < dataPL.length; i++) { %>
+                        <%= i + 1 %>. <%= dataPL[i] %><br>
+                    <% } %>
+                </p>
+            </div>
+            <div class="wrapper">
+                <p> <b>Uitslagen:</b> <br><br>
+                    <% for (let i = 0; i < homeTeam.length; i++) { %>
+                        <%= homeTeam[i] %> - <%= awayTeam[i] %> <b><%= scoreHome[i] %> - <%= scoreAway[i] %></b><br>
+                    <% } %>
+                </p>
+            </div>
         </div>
     </body>
 </html>
