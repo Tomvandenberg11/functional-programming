@@ -11,13 +11,13 @@ function main() {
 
   const axios = require('axios')
 
-  const configPL = {
+  const configStandings = {
     method: 'get',
     url: 'http://api.football-data.org/v2/competitions/PL/standings',
     headers: { 'X-Auth-Token': '75d02306c5a74efbb9c7cd735b2aa82d' },
   }
 
-  const configERE = {
+  const configScores = {
     method: 'get',
     url: 'http://api.football-data.org/v2/competitions/PL/matches/?matchday=9',
     headers: { 'X-Auth-Token': '75d02306c5a74efbb9c7cd735b2aa82d' },
@@ -29,25 +29,20 @@ function main() {
   let scoreHome = []
   let scoreAway = []
 
-  let cleaned
+  let cleanedStandings
 
-  axios(configPL)
-    .then(function (response) {
+  axios(configStandings)
+    .then((response) => {
       const arrayLength = response.data.standings[0].table.length
       for ( let i = 0; i < arrayLength; i++) {
         standingsPL.push(response.data.standings[0].table[i].team.name)
       }
     })
-    .then(() => {
-      cleaned = removeFC(standingsPL)
-    })
-    .then(() => console.log(cleaned))
-    .catch(function (error) {
-      console.log(error)
-    })
+    .then(() => cleanedStandings = removeFC(standingsPL))
+    .catch((error) => console.log(error))
 
-  axios(configERE)
-    .then(function (response) {
+  axios(configScores)
+    .then((response) => {
       const arrayLength = response.data.matches.length
       for ( let i = 1; i < arrayLength; i++) {
         homeTeam.push(response.data.matches[i].homeTeam.name)
@@ -56,13 +51,11 @@ function main() {
         scoreAway.push(response.data.matches[i].score.fullTime.awayTeam)
       }
     })
-    .catch(function (error) {
-      console.log(error)
-    })
+    .catch((error) => console.log(error))
 
 
   app.get('/', (req, res) => res.render('index.ejs', {
-    dataPL: standingsPL,
+    dataPL: cleanedStandings,
     homeTeam: homeTeam,
     awayTeam: awayTeam,
     scoreHome: scoreHome,
