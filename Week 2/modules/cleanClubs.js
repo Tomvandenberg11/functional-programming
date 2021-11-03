@@ -1,5 +1,1 @@
-module.exports = function cleanFC(data) { // filter data from API file
-  return data.map((item) => {
-      return item.replace('FC', '').trim() // removing FC at the club name and removing whitespace
-  })
-}
+module.exports = data => data.map(item => item.replace('FC', '').trim()) // removing FC from clubname and removing whitespace
