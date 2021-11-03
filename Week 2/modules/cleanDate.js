@@ -1,5 +1,7 @@
+const moment = require('moment')
+
 module.exports = function filterData(data) { // filter data from API file
   return data.map((item) => {
-      return item.replace('FC', '').trim()
+    return moment(item).format('DD-MM-YYYY')
   })
 }

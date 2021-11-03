@@ -17,8 +17,29 @@ h1 {
     display: inline-flex;
     align-items: flex-start;
     justify-content: center;
+    flex-direction: column;
     margin: 5px;
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 1px 0 5px 1px #333;
+    background-color: white;
+}
+
+.club {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 20px;
+    margin: 0 15px;
+}
+
+.match {
+    margin-bottom: 10px;
+}
+
+.match:last-child {
+    margin-bottom: 0;
 }

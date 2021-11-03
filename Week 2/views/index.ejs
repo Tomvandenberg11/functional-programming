@@ -5,29 +5,20 @@
     </head>
 
     <body>
-        <h1>Voetbal ranglijsten per competitie</h1>
         <div class="container">
-            <form action="/" method="get">
-                <select name="roundPicker">
-                    <option name="1" value="1">1</option>
-                    <option name="2" value="2">2</option>
-                    <option name="3" value="3">3</option>
-                </select>
-                <input type="submit" />
-            </form>
             <div class="wrapper">
-                <p> <b>Stand:</b> <br><br>
+                <p>
+                    <b>Stand:</b> <br><br>
                     <% for (let i = 0; i < dataPL.length; i++) { %>
-                        <%= i + 1 %>. <%= dataPL[i] %><br>
+                        <p class="club"><%= i + 1 %>. <img class="logo" src="<%= logo[i] %>" alt="logo"/>  <%= dataPL[i] %><br></p>
                     <% } %>
                 </p>
             </div>
             <div class="wrapper">
-                <p> <b>Uitslagen:</b> <br><br>
-                    <% for (let i = 0; i < homeTeam.length; i++) { %>
-                        <%= homeTeam[i] %> - <%= awayTeam[i] %> <b><%= scoreHome[i] %> - <%= scoreAway[i] %></b><br>
-                    <% } %>
-                </p>
+                <p><b>Uitslagen:</b> <br><br></p>
+                <% for (let i = 0; i < homeTeam.length; i++) { %>
+                    <p class="match">Datum: <%= date[i] %> <br> <%= homeTeam[i] %> <b><%= scoreHome[i] %> - <%= scoreAway[i] %></b> <%= awayTeam[i] %></p>
+                <% } %>
             </div>
         </div>
     </body>
