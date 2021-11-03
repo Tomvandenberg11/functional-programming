@@ -1,7 +1,8 @@
 const express = require('express') // setting express as templating engine
 const app = express()
-const port = process.env.PORT || 3000 // setting port
 
+require('dotenv').config({path: '.env-dev'}) // config .env file
+const port = process.env.PORT || 3000 // setting port
 const TOKEN = process.env.TOKEN // importing API token from .env-dev file
 
 const axios = require('axios') // importing axios
@@ -9,7 +10,7 @@ const axios = require('axios') // importing axios
 const cleanClubs = require('./modules/cleanClubs') // importing cleanClubs module
 const cleanDate = require('./modules/cleanDate')// importing cleanDate module
 
-require('dotenv').config({path: '.env-dev'})
+
 
 const main = () => {
   app.use(express.static('static')) // declaring static as static folder
@@ -21,7 +22,7 @@ const main = () => {
     headers: { 'X-Auth-Token': TOKEN },
   }
 
-  const matchDay = 10
+  const matchDay = 11 // setting match round variable
 
   // importing the matches API
   const configScores = {
