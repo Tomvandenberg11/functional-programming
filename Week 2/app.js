@@ -1,27 +1,33 @@
 const express = require('express') // setting express as templating engine
 const app = express()
-const port = 3000 // setting port
+const port = process.env.PORT || 3000 // setting port
+
+const TOKEN = process.env.TOKEN // importing API token from .env-dev file
 
 const axios = require('axios') // importing axios
 
 const cleanClubs = require('./modules/cleanClubs') // importing cleanClubs module
 const cleanDate = require('./modules/cleanDate')// importing cleanDate module
 
-main()
+require('dotenv').config({path: '.env-dev'})
 
-function main() {
+const main = () => {
   app.use(express.static('static')) // declaring static as static folder
 
-  const configStandings = { // importing the standings API
+  // importing the standings API
+  const configStandings = {
     method: 'get',
     url: 'https://api.football-data.org/v2/competitions/PL/standings',
-    headers: { 'X-Auth-Token': '75d02306c5a74efbb9c7cd735b2aa82d' },
+    headers: { 'X-Auth-Token': TOKEN },
   }
 
-  const configScores = { // importing the matches API
+  const matchDay = 10
+
+  // importing the matches API
+  const configScores = {
     method: 'get',
-    url: `http://api.football-data.org/v2/competitions/PL/matches/?matchday=10`,
-    headers: { 'X-Auth-Token': '75d02306c5a74efbb9c7cd735b2aa82d' },
+    url: `http://api.football-data.org/v2/competitions/PL/matches/?matchday=${matchDay}`,
+    headers: { 'X-Auth-Token': process.env.TOKEN },
   }
 
   // declaring empty arrays as global variables
@@ -73,4 +79,6 @@ function main() {
     console.log(`Example app listening at http://localhost:${port}`)
   })
 }
+
+main()
 
