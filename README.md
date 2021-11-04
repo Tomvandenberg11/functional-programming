@@ -26,6 +26,10 @@ Als je de bovenstaande stappen gevolgd hebt kan de app opgestart worden door:
 te runnen in de terminal.
 Je ziet dan een bericht in de terminal staan op welke link de app te zien is.
 
+## Rubrics
+Dit zijn de punten waarop we beoordeeld worden:
+![Rubrics](images/rubrics.png "Rubrics")
+
 
 ## Licence
 Dit project is voorzien van een MIT licence. Zie de pagina LICENCE voor meer informatie.
