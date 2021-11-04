@@ -1,8 +1,7 @@
-const express = require('express') // setting express as templating engine
+const express = require('express') // declaring express as templating engine
 const app = express()
-
 require('dotenv').config({path: '.env-dev'}) // config .env file
-const port = process.env.PORT || 3000 // setting port
+const port = process.env.PORT || 3000 // declaring port
 const TOKEN = process.env.TOKEN // importing API token from .env-dev file
 
 const axios = require('axios') // importing axios
@@ -10,7 +9,19 @@ const axios = require('axios') // importing axios
 const cleanClubs = require('./modules/cleanClubs') // importing cleanClubs module
 const cleanDate = require('./modules/cleanDate')// importing cleanDate module
 
+// declaring empty arrays as global variables
+let standingsPL = []
+let logo = []
+let matchDate = []
+let homeTeam = []
+let awayTeam = []
+let scoreHome = []
+let scoreAway = []
 
+let cleanedStandings
+let cleanedMatchDate
+let cleanedHomeTeam
+let cleanedAwayTeam
 
 const main = () => {
   app.use(express.static('static')) // declaring static as static folder
@@ -22,26 +33,15 @@ const main = () => {
     headers: { 'X-Auth-Token': TOKEN },
   }
 
-  const matchDay = 11 // setting match round variable
+
+  let matchDay = 10 // declaring default round variable
 
   // importing the matches API
   const configScores = {
-    method: 'get',
-    url: `http://api.football-data.org/v2/competitions/PL/matches/?matchday=${matchDay}`,
-    headers: { 'X-Auth-Token': process.env.TOKEN },
+      method: 'get',
+      url: `https://api.football-data.org/v2/competitions/PL/matches/?matchday=${matchDay}`,
+      headers: { 'X-Auth-Token': process.env.TOKEN },
   }
-
-  // declaring empty arrays as global variables
-  let standingsPL = []
-  let logo = []
-  let matchDate = []
-  let homeTeam = []
-  let awayTeam = []
-  let scoreHome = []
-  let scoreAway = []
-
-  let cleanedStandings
-  let cleanedMatchDate
 
   // function to import and clean the standings and logo's
   axios(configStandings)
@@ -62,6 +62,8 @@ const main = () => {
       scoreAway = response.data.matches.map(item => item.score.fullTime.awayTeam) // mapping all away scores in new array
     })
     .then(() => cleanedMatchDate = cleanDate(matchDate)) // cleaning matchDate by cleanDate module and putting it in cleanedMatchDate
+    .then(() => cleanedHomeTeam = cleanClubs(homeTeam)) // cleaning homeTeam by cleanClubs module and putting it in cleanedHomeTeam
+    .then(() => cleanedAwayTeam = cleanClubs(awayTeam)) // cleaning awayTeam by cleanClubs module and putting it in cleanedAwayTeam
     .catch((error) => console.log(error))
 
   // rendering all data to the index.ejs
@@ -69,15 +71,15 @@ const main = () => {
     dataPL: cleanedStandings,
     date: cleanedMatchDate,
     logo: logo,
-    homeTeam: homeTeam,
-    awayTeam: awayTeam,
+    homeTeam: cleanedHomeTeam,
+    awayTeam: cleanedAwayTeam,
     scoreHome: scoreHome,
     scoreAway: scoreAway,
   }))
 
   // console.log showing port
   app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`App listening at http://localhost:${port}`)
   })
 }
 

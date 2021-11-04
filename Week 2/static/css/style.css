@@ -5,8 +5,11 @@
 }
 
 body {
-    background-color: lightblue;
-    padding: 30px 90px
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 h1 {
@@ -23,6 +26,10 @@ h1 {
     border-radius: 10px;
     box-shadow: 1px 0 5px 1px #333;
     background-color: white;
+}
+
+.form {
+    margin-bottom: 20px;
 }
 
 .club {

@@ -7,19 +7,19 @@
     <body>
         <div class="container">
             <div class="wrapper">
-                <p>
-                    <b>Stand:</b> <br><br>
-                    <!--for loop to loop through all logo's and clubs with the length of the dataPL array-->
-                    <% for (let i = 0; i < dataPL.length; i++) { %>
-                        <p class="club"><%= i + 1 %>. <img class="logo" src="<%= logo[i] %>" alt="logo"/>  <%= dataPL[i] %><br></p>
-                    <% } %>
-                </p>
-            </div>
-            <div class="wrapper">
                 <p><b>Uitslagen:</b> <br><br></p>
+
                 <!--for loop to loop through all dates, scores and clubs with the length of the homeTeam array-->
                 <% for (let i = 0; i < homeTeam.length; i++) { %>
-                    <p class="match">Datum: <%= date[i] %> <br> <%= homeTeam[i] %> <b><%= scoreHome[i] %> - <%= scoreAway[i] %></b> <%= awayTeam[i] %></p>
+                    <p class="match"><u>Datum: <%= date[i] %></u> <br> <%= homeTeam[i] %> <b><%= scoreHome[i] %> - <%= scoreAway[i] %></b> <%= awayTeam[i] %></p>
+                <% } %>
+            </div>
+
+            <div class="wrapper">
+                <p><b>Stand:</b> <br><br></p>
+                <!--for loop to loop through all logo's and clubs with the length of the dataPL array-->
+                <% for (let i = 0; i < dataPL.length; i++) { %>
+                    <p class="club"><%= i + 1 %>. <img class="logo" src="<%= logo[i] %>" alt="logo"/>  <%= dataPL[i] %><br></p>
                 <% } %>
             </div>
         </div>
