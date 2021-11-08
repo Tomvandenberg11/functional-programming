@@ -5,7 +5,8 @@ BESCHRIJVING
 
 De website is [hier](#LINK HIER) te zien.
 
-![Home](#LINK HIER)
+
+![Home](images/homescreen.png "Homescreen")
 
 ### Installatie
 
