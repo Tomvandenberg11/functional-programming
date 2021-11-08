@@ -1,1 +1,0 @@
-module.exports = data => data.map(item => item.replace('FC', '').trim()) // removing FC from clubname and removing whitespace

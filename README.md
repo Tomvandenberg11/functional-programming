@@ -1,11 +1,11 @@
-# Functional programming
+# Repo naam
 
-Welkom bij mijn project van functional programming. 
+Welkom bij mijn project van functional programming.
+BESCHRIJVING
 
-Voor de Tech Track van het semester Information Design was is het de bedoeling om data van een dataset (Week 1) en een API (Week 2)
-schoon te maken door midden van functional programming in JavasScript. Ik heb ervoor gekozen om een API te gebruiken met daarin allerlei soorten data over voetbal, zoals standen, uitslagen en clubs.
+De website is [hier](#LINK HIER) te zien.
 
-![Home](images/homescreen.png "Homescreen")
+![Home](#LINK HIER)
 
 ### Installatie
 
@@ -27,13 +27,9 @@ te runnen in de terminal.
 Je ziet dan een bericht in de terminal staan op welke link de app te zien is.
 
 ## Rubrics
-Dit zijn de punten waarop we beoordeeld worden:
-![Rubrics](images/rubrics.png "Rubrics")
 
 
 ## Licence
 Dit project is voorzien van een MIT licence. Zie de pagina LICENCE voor meer informatie.
 
 ## Credits
-Ik wil graag als eerste de geweldige docenten bedanken voor al hun inzet en lesstof. Ten tweede wil ik mijn supportgroepje bedanken voor de mentale en functionele support. Ten derde wil
-ik Stackoverflow bedanken voor al hun antwoorden op mijn vragen. 
