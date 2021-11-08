@@ -1,0 +1,52 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
+
+body {
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.wrapper {
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin: 5px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 1px 0 5px 1px #333;
+    background-color: white;
+}
+
+.form {
+    margin-bottom: 20px;
+}
+
+.club {
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 20px;
+    margin: 0 15px;
+}
+
+.match {
+    margin-bottom: 10px;
+}
+
+.match:last-child {
+    margin-bottom: 0;
+}
