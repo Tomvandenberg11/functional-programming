@@ -6,10 +6,14 @@ Voor de Tech Track van het semester Information Design was is het de bedoeling o
 schoon te maken door midden van functional programming in JavasScript. Ik heb ervoor gekozen om een API te gebruiken met daarin allerlei soorten data over voetbal, zoals standen, uitslagen en clubs.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> parent of edb6236... installing react
 ![Home](images/homescreen.png "Homescreen")
+=======
+![Home](#LINK HIER)
+>>>>>>> parent of f472538... Merge remote-tracking branch 'origin/main' into main
 
 ### Installatie
 
